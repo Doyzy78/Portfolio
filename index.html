@@ -3,136 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doydoy Sayman — Portfolio</title>
+    <title>My Shop</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav>
-        <div class="logo">
-            <img src="src/loggo/logo.png" alt="Logo">
-            <span>Doydoy Sayman</span>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="src/resume/resume.pdf" download>Resume</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- ===== HERO ===== -->
+    <!-- Header -->
     <header>
-        <h1>Hello, I'm <span class="pink">Doydoy Sayman</span></h1>
-        <p>Game Modder • Web Developer</p>
-
-        <div class="buttons">
-            <a href="#contact" class="btn">Contact Me</a>
-        </div>
+        <h1>🛒 My Shop</h1>
+        <button class="cart-btn" id="cartBtn">🛒 Cart (<span id="cartCount">0</span>)</button>
     </header>
 
-    <!-- ===== ABOUT ===== -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am passionate about game modding, web development, and building interactive
-            experiences. I enjoy learning new technologies and creating useful tools.
-        </p>
-
-        <h3>Skills</h3>
-        <ul>
-            <li>Game Modding</li>
-            <li>HTML, CSS, JavaScript</li>
-            <li>Basic C++</li>
-            <li>Python Basics</li>
-            <li>UI/UX Design</li>
-        </ul>
-
-        <h3>Hobbies</h3>
-        <ul>
-            <li>Gaming</li>
-            <li>Watching Tech Videos</li>
-            <li>Experimenting with Mods</li>
-        </ul>
-    </section>
-
-    <!-- ===== PROJECTS ===== -->
-    <section id="projects">
-        <h2>Projects</h2>
-
-        <div class="project-container">
-
-            <div class="project-card">
-                <img src="src/immage/project1.jpg" alt="GameGuardian Hex Converter">
-                <h3>GAMEGUARDIAN Hex Converter</h3>
-                <p>This tool is for modifying game values. Available data types: int, boolean, float.</p>
-                <a href="https://darkmod-gg-tools.vercel.app/"
-                   target="_blank" class="btn">
-                    <i class="fa-solid fa-eye"></i> View Project
-                </a>
-            </div>
-
-            <div class="project-card">
-                <img src="src/immage/project2.jpg" alt="WebShop">
-                <h3>WebShop</h3>
-                <p>An online shop project with digital products.</p>
-                <a href="http://megan-shop.vercel.app/"
-                   target="_blank" class="btn">
-                    <i class="fa-solid fa-eye"></i> View Project
-                </a>
-            </div>
-
-            <div class="project-card">
-                <img src="src/immage/project3.jpg" alt="Doy - Food Shop">
-                <h3>Doy - Food Shop</h3>
-                <p>This is my sample project, similar to GrabFood and Foodpanda — built with HTML, CSS, JS, and PHP.</p>
-                <a href="http://luagaming.onlinewebshop.net/index.php"
-                   target="_blank" class="btn">
-                    <i class="fa-solid fa-eye"></i> View Project
-                </a>
-            </div>
-
-            <div class="project-card">
-                <img src="src/immage/project4.jpg" alt="Doy - Free Mods App">
-                <h3>Doy - Free Mods App</h3>
-                <p>This is my collection of free modded apps and tools.</p>
-                <a href="http://alone.mypressonline.com"
-                   target="_blank" class="btn">
-                    <i class="fa-solid fa-eye"></i> View Project
-                </a>
-            </div>
-
+    <!-- Products Section -->
+    <main>
+        <h2>Our Products</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded HERE from products.js ✅ -->
         </div>
-    </section>
+    </main>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact">
-        <h2>Social Media</h2>
-        <p>Connect with me on my social accounts</p>
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            
+            <div class="cart-total">
+                <strong>Total: ₱<span id="cartTotal">0.00</span></strong>
+            </div>
 
-        <div class="contact-buttons">
-            <a href="https://t.me/Ganmae"
-               class="btn contact-icon" target="_blank">
-                <i class="fa-brands fa-telegram"></i> Telegram
-            </a>
-            <a href="https://www.facebook.com/share/14QKYCqbR54/"
-               class="btn contact-icon" target="_blank">
-                <i class="fa-brands fa-facebook"></i> Facebook
-            </a>
+            <!-- Customer Info -->
+            <div class="customer-form">
+                <input type="text" id="customerName" placeholder="Your Name" required>
+                <input type="email" id="customerEmail" placeholder="Email Address" required>
+                <input type="tel" id="customerPhone" placeholder="Phone Number">
+            </div>
+
+            <button class="checkout-btn" id="checkoutBtn">💳 Proceed to Payment</button>
+            <p class="secure-note">🔒 Secure Payment via PayMongo</p>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p>&copy; 2026 Doydoy Sayman. All rights reserved.</p>
-    </footer>
+    <!-- Loading — ONLY during payment -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Creating payment link...</p>
+    </div>
 
+    <!-- Status Messages -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ⚠️ IMPORTANT: Order matters! products.js FIRST, then app.js -->
+    <script src="product.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
